@@ -1,4 +1,3 @@
-/* Minimal, necessary CSS only */
 :root {
     --bg: #fff;
     --black: #000;
@@ -22,7 +21,6 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-/* Navbar */
 .navbar {
     background: var(--black);
     padding: 0.6rem 1rem
@@ -33,7 +31,6 @@ body {
     font-weight: 700
 }
 
-/* Page layout spacing */
 .container-fluid {
     padding-left: 1rem;
     padding-right: 1rem
@@ -44,7 +41,6 @@ body {
     padding-bottom: 1.5rem
 }
 
-/* Two-column layout: keep gap and responsive stacking */
 .d-flex .row {
     display: flex;
     gap: 1.25rem;
@@ -54,14 +50,13 @@ body {
 
 .d-flex .row>.col-6 {
     flex: 1 1 0;
-    min-width: 260px
+    min-width: 490px;
 }
 
-/* Card panels */
 .col-6.border {
-    background: #fff;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: #d3c9c96b;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 0, 0, 0.06);
     padding: 1rem
 }
 
@@ -79,79 +74,151 @@ body {
     overflow: auto
 }
 
-/* Form */
 .input-group {
-    display: flex;
-    gap: .6rem;
-    align-items: center;
-    margin-bottom: .6rem
-}
 
-.input-group label.form-control {
-    width: 120px;
-    background: transparent;
-    border: none;
-    font-weight: 600
-}
+    :root {
+        --bg: #fff;
+        --black: #000;
+        --muted: #6b6b6b
+    }
 
-.input-group .form-control {
-    flex: 1;
-    padding: .5rem;
-    border: 1px solid rgba(0, 0, 0, .08);
-    border-radius: 6px
-}
+    * {
+        box-sizing: border-box
+    }
 
-/* Button */
-.btn-primary {
-    background: var(--black);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: .6rem;
-    font-weight: 700
-}
+    html,
+    body {
+        height: 100%;
+        margin: 0
+    }
 
-/* Table basic */
-.table {
-    width: 100%;
-    border-collapse: collapse
-}
+    body {
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        background: var(--bg);
+        color: var(--black)
+    }
 
-.table th {
-    background: #000;
-    color: #fff;
-    padding: .6rem;
-    text-align: left;
-    font-weight: 700
-}
+    .navbar {
+        background: var(--black);
+        padding: .6rem 1rem
+    }
 
-.table td {
-    padding: .5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, .04)
-}
+    .navbar-brand {
+        color: #fff !important;
+        font-weight: 700
+    }
 
-/* Completed tasks: muted + strike */
-#completedList tr td {
-    color: var(--muted);
-    text-decoration: line-through
-}
+    .container-fluid {
+        padding: 0 1rem
+    }
 
-@media (max-width:800px) {
-    .d-flex {
-        flex-direction: column
+    .d-flex.vh-100 {
+        padding: 1.5rem 0
     }
 
     .d-flex .row {
-        display: block
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        width: 100%
+    }
+
+    .d-flex .row>.col-6 {
+        flex: 1 1 0;
+        min-width: 260px
+    }
+
+    .col-6.border {
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, .06);
+        padding: 1rem
+    }
+
+    .d-flex .row>.col-6:first-child {
+        position: sticky;
+        top: 1.25rem;
+        flex: 0 0 420px;
+        align-self: flex-start;
+        max-height: calc(100vh - 2.5rem);
+        overflow: auto
+    }
+
+    .d-flex .row>.col-6:last-child {
+        max-height: calc(100vh - 2.5rem);
+        overflow: auto
     }
 
     .input-group {
-        flex-direction: column;
-        align-items: stretch
+        display: flex;
+        gap: .6rem;
+        align-items: center;
+        margin-bottom: .6rem
     }
 
     .input-group label.form-control {
+        width: 120px;
+        background: transparent;
+        border: none;
+        font-weight: 600
+    }
+
+    .input-group .form-control {
+        flex: 1;
+        padding: .5rem;
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 6px
+    }
+
+    .btn-primary {
+        background: var(--black);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: .6rem;
+        font-weight: 700
+    }
+
+    .table {
         width: 100%;
-        margin-bottom: .25rem
+        border-collapse: collapse
+    }
+
+    .table th {
+        background: #000;
+        color: #fff;
+        padding: .6rem;
+        text-align: left;
+        font-weight: 700
+    }
+
+    .table td {
+        padding: .5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, .04)
+    }
+
+    #completedList tr td {
+        color: var(--muted);
+        text-decoration: line-through
+    }
+
+    @media (max-width:800px) {
+        .d-flex {
+            flex-direction: column
+        }
+
+        .d-flex .row {
+            display: block
+        }
+
+        .input-group {
+            flex-direction: column;
+            align-items: stretch
+        }
+
+        .input-group label.form-control {
+            width: 100%;
+            margin-bottom: .25rem
+        }
     }
 }

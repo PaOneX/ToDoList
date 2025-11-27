@@ -18,11 +18,18 @@ function addTask() {
     description: txtDescription,
     status: txtStatus,
   };
+  
+  txtName.value="";
+  txtTask.value="";
+  txtDate.value="";
+  txtDescription.value="";
+  txtStatus.value="";
 
   taskList.push(task);
 
   updateLocalSttorage();
   updateAssignedTaskTable();
+
 }
 
 function updateAssignedTaskTable() {
