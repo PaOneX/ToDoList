@@ -1,14 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+  </head>
+  <body>
+    <nav class="navbar bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white text-center" href="#">
+          <img
+            src="img/download.png"
+            alt=" Logo"
+            width="50"
+            height="34"
+            class="d-inline-block align-text-top"
+          />
+          TO-DO List
+        </a>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="row">
+          <div class="col-6 border border-2 p-3">
+            <h1 class="text-center mt-4 mb-4">Add A Task</h1>
+            <div class="input-group mb-3">
+              <label class="form-control" for="">Name</label>
+              <input
+                type="text"
+                id="todo-input"
+                class="form-control"
+                placeholder="Add a new task"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <label class="form-control" for="">Task</label>
+              <input
+                type="text"
+                id="todo-input"
+                class="form-control"
+                placeholder="Add a new task"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <label class="form-control" for="">Date</label>
+              <input
+                type="text"
+                id="todo-input"
+                class="form-control"
+                placeholder="Add a new task"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <label class="form-control" for="">Description</label>
+              <input
+                type="text"
+                id="todo-input"
+                class="form-control"
+                placeholder="Add a new task"
+              />
+            </div>
+            <div>
+              <button
+                class="btn btn-primary col-12"
+                id="add-button"
+                type="button"
+                onclick="addTask();"
+              >
+                Add Task
+              </button>
+            </div>
+          </div>
+
+          <div class="col-6 border border-2 p-3">
+            <div class="row">
+              <div class="col-12 border border-2 p-3 mb-4">
+                <h2 class="text-center mt-4 mb-4">Assigned Tasks</h2>
+                <div class="table-responsive">
+                  <table id="assignedList"></table>
+                </div>
+              </div>
+              <!-- Completed task table -->
+              <div class="col-12 border border-2 p-3">
+                <h2 class="text-center mt-4 mb-4">Completed Tasks</h2>
+                <div class="table-responsive">
+                  <table id="completedList"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="js/app.js"></script>
-</body>
+  </body>
 </html>
