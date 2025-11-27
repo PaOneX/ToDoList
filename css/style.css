@@ -1,0 +1,83 @@
+/* Basic page styles */
+body {
+	background: linear-gradient(180deg, #f6f9ff 0%, #eef6ff 100%);
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	color: #1f2937;
+}
+
+.navbar {
+	box-shadow: 0 2px 6px rgba(16,24,40,0.05);
+}
+
+.navbar-brand img { 
+	filter: drop-shadow(0 1px 0 rgba(0,0,0,0.04));
+}
+
+.container-fluid > .d-flex {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+.col-6.border {
+	background: #ffffff;
+	border-radius: 8px;
+}
+
+h1, h2 {
+	font-weight: 600;
+	color: #0f172a;
+}
+
+/* Inputs and labels styling (keeps IDs intact) */
+.input-group .form-control {
+	border-radius: 4px;
+}
+
+.input-group label.form-control {
+	width: 110px;
+	text-align: left;
+	background: transparent;
+	border: none;
+	font-weight: 600;
+	color: #0f172a;
+}
+
+/* Buttons */
+.btn-primary {
+	background: linear-gradient(180deg,#0d6efd,#0b5ed7);
+	border: none;
+	padding: 0.6rem 1rem;
+	font-weight: 600;
+}
+
+.btn-primary:hover {
+	filter: brightness(0.95);
+}
+
+/* Tables */
+.table {
+	margin-bottom: 0;
+}
+
+.table th {
+	background: linear-gradient(90deg,#f8fafc,#eef2ff);
+	color: #0f172a;
+	font-weight: 700;
+}
+
+.table td, .table th {
+	vertical-align: middle;
+}
+
+/* Completed tasks subtle style */
+#completedList tr td {
+	color: #475569;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+	.d-flex { flex-direction: column; }
+	.col-6 { width: 100% !important; }
+	.input-group label.form-control { width: 100% !important; }
+}
+

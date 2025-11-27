@@ -27,9 +27,10 @@ function addTask() {
 
 function updateAssignedTaskTable() {
   let assignedList = document.getElementById("assignedList");
+   const hasCompleted = taskList.some((t) => t.status === "Assigned");
+  assignedList.classList.toggle("d-none", !hasCompleted);
 
-  if (taskList.length == 0) return;
-
+  if (assignedList.length == 0) return;
   let tblbody = `
         <tr>
             <th>Name</th>
@@ -65,7 +66,6 @@ function completeTask(id) {
   });
 
   console.log(taskList);
-  
 
   updateLocalSttorage();
   updateCompletedTaskTable();
@@ -74,6 +74,10 @@ function completeTask(id) {
 
 function updateCompletedTaskTable() {
   let completedList = document.getElementById("completedList");
+
+  const hasCompleted = taskList.some((t) => t.status === "Completed");
+  completedList.classList.toggle("d-none", !hasCompleted);
+
   let tblbody = `
         <tr>
             <th>Name</th>
@@ -107,10 +111,12 @@ function updateLocalSttorage() {
 
 function loadFromLocalStorage() {
   taskList = JSON.parse(localStorage.getItem("task")) || [];
-  updateAssignedTaskTable()
-  updateCompletedTaskTable()
+  updateAssignedTaskTable();
+  updateCompletedTaskTable();
 }
 
 function generateRandomId(length = 10) {
-  return Math.random().toString(36).substring(2, length + 2);
+  return Math.random()
+    .toString(36)
+    .substring(2, length + 2);
 }
