@@ -1,4 +1,6 @@
 let taskList = [];
+loadFromLocalStorage();
+
 function addTask() {
   console.log("Task Added");
 
@@ -6,23 +8,27 @@ function addTask() {
   let txtTask = document.getElementById("txtTask").value;
   let txtDate = document.getElementById("txtDate").value;
   let txtDescription = document.getElementById("txtDescription").value;
+  let txtStatus = document.getElementById("txtStatus").value;
 
   let task = {
+    id: generateRandomId(),
     name: txtName,
     task: txtTask,
     date: txtDate,
     description: txtDescription,
+    status: txtStatus,
   };
 
   taskList.push(task);
-  console.log(taskList);
 
-  localStorage.setItem("task", JSON.stringify(taskList));
-  loadAssignTask();
+  updateLocalSttorage();
+  updateAssignedTaskTable();
 }
 
-function loadAssignTask() {
+function updateAssignedTaskTable() {
   let assignedList = document.getElementById("assignedList");
+
+  if (taskList.length == 0) return;
 
   let tblbody = `
         <tr>
@@ -30,27 +36,81 @@ function loadAssignTask() {
             <th>Task</th>
             <th>Date</th>
             <th>Description</th>
+            <th>Status</th>
         </tr>
    `;
 
-  let localStorageAssignedList = localStorage.getItem("task");
-  let localTasks = JSON.parse(localStorageAssignedList);
-
-  localTasks.forEach((task) => {
-    tblbody += `
+  taskList.forEach((task) => {
+    if (task.status == "Assigned") {
+      tblbody += `
         <tr>
             <td>${task.name}</td>
             <td>${task.task}</td>
             <td>${task.date}</td>
             <td>${task.description}</td>
-            <th><button class="btn btn-success" onclick="completeTask();">Completed</button></th>
-
+            <td>${task.status}</td>
+            <td><button onclick="completeTask('${task.id}')">Complete Task</button></td>
         </tr>
         `;
+    }
   });
   assignedList.innerHTML = tblbody;
 }
 
-function completeTask() {
-    console.log("Task Completed");
+function completeTask(id) {
+  taskList.forEach((task) => {
+    if (task.id == id) {
+      task.status = "Completed";
+    }
+  });
+
+  console.log(taskList);
+  
+
+  updateLocalSttorage();
+  updateCompletedTaskTable();
+  updateAssignedTaskTable();
+}
+
+function updateCompletedTaskTable() {
+  let completedList = document.getElementById("completedList");
+  let tblbody = `
+        <tr>
+            <th>Name</th>
+            <th>Task</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+   `;
+
+  taskList.forEach((task) => {
+    if (task.status == "Completed") {
+      tblbody += `
+        <tr>
+            <td>${task.name}</td>
+            <td>${task.task}</td>
+            <td>${task.date}</td>
+            <td>${task.description}</td>
+            <td>${task.status}</td>
+        </tr>
+        `;
+    }
+  });
+
+  completedList.innerHTML = tblbody;
+}
+
+function updateLocalSttorage() {
+  localStorage.setItem("task", JSON.stringify(taskList));
+}
+
+function loadFromLocalStorage() {
+  taskList = JSON.parse(localStorage.getItem("task")) || [];
+  updateAssignedTaskTable()
+  updateCompletedTaskTable()
+}
+
+function generateRandomId(length = 10) {
+  return Math.random().toString(36).substring(2, length + 2);
 }
