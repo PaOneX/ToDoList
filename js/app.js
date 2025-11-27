@@ -50,7 +50,7 @@ function updateAssignedTaskTable() {
             <td>${task.date}</td>
             <td>${task.description}</td>
             <td>${task.status}</td>
-            <td><button onclick="completeTask('${task.id}')">Complete Task</button></td>
+            <td><button class="btn btn-outline-success" onclick="completeTask('${task.id}')">Complete Task</button></td>
         </tr>
         `;
     }

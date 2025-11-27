@@ -1,83 +1,157 @@
-/* Basic page styles */
+/* Minimal, necessary CSS only */
+:root {
+    --bg: #fff;
+    --black: #000;
+    --muted: #6b6b6b
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
 body {
-	background: linear-gradient(180deg, #f6f9ff 0%, #eef6ff 100%);
-	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-	color: #1f2937;
+    height: 100%
 }
 
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: var(--bg);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased
+}
+
+/* Navbar */
 .navbar {
-	box-shadow: 0 2px 6px rgba(16,24,40,0.05);
+    background: var(--black);
+    padding: 0.6rem 1rem
 }
 
-.navbar-brand img { 
-	filter: drop-shadow(0 1px 0 rgba(0,0,0,0.04));
+.navbar-brand {
+    color: #fff !important;
+    font-weight: 700
 }
 
-.container-fluid > .d-flex {
-	padding-top: 1.5rem;
-	padding-bottom: 1.5rem;
+/* Page layout spacing */
+.container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem
 }
 
+.d-flex.vh-100 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem
+}
+
+/* Two-column layout: keep gap and responsive stacking */
+.d-flex .row {
+    display: flex;
+    gap: 1.25rem;
+    width: 100%;
+    align-items: flex-start
+}
+
+.d-flex .row>.col-6 {
+    flex: 1 1 0;
+    min-width: 260px
+}
+
+/* Card panels */
 .col-6.border {
-	background: #ffffff;
-	border-radius: 8px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 1rem
 }
 
-h1, h2 {
-	font-weight: 600;
-	color: #0f172a;
+/* Keep Add Task panel visible (sticky) */
+.d-flex .row>.col-6:first-child {
+    position: sticky;
+    top: 1.25rem;
+    align-self: flex-start;
+    max-height: calc(100vh - 2.5rem);
+    overflow: auto
 }
 
-/* Inputs and labels styling (keeps IDs intact) */
-.input-group .form-control {
-	border-radius: 4px;
+.d-flex .row>.col-6:last-child {
+    max-height: calc(100vh - 2.5rem);
+    overflow: auto
+}
+
+/* Form */
+.input-group {
+    display: flex;
+    gap: .6rem;
+    align-items: center;
+    margin-bottom: .6rem
 }
 
 .input-group label.form-control {
-	width: 110px;
-	text-align: left;
-	background: transparent;
-	border: none;
-	font-weight: 600;
-	color: #0f172a;
+    width: 120px;
+    background: transparent;
+    border: none;
+    font-weight: 600
 }
 
-/* Buttons */
+.input-group .form-control {
+    flex: 1;
+    padding: .5rem;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 6px
+}
+
+/* Button */
 .btn-primary {
-	background: linear-gradient(180deg,#0d6efd,#0b5ed7);
-	border: none;
-	padding: 0.6rem 1rem;
-	font-weight: 600;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: .6rem;
+    font-weight: 700
 }
 
-.btn-primary:hover {
-	filter: brightness(0.95);
-}
-
-/* Tables */
+/* Table basic */
 .table {
-	margin-bottom: 0;
+    width: 100%;
+    border-collapse: collapse
 }
 
 .table th {
-	background: linear-gradient(90deg,#f8fafc,#eef2ff);
-	color: #0f172a;
-	font-weight: 700;
+    background: #000;
+    color: #fff;
+    padding: .6rem;
+    text-align: left;
+    font-weight: 700
 }
 
-.table td, .table th {
-	vertical-align: middle;
+.table td {
+    padding: .5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .04)
 }
 
-/* Completed tasks subtle style */
+/* Completed tasks: muted + strike */
 #completedList tr td {
-	color: #475569;
+    color: var(--muted);
+    text-decoration: line-through
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-	.d-flex { flex-direction: column; }
-	.col-6 { width: 100% !important; }
-	.input-group label.form-control { width: 100% !important; }
-}
+@media (max-width:800px) {
+    .d-flex {
+        flex-direction: column
+    }
 
+    .d-flex .row {
+        display: block
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .input-group label.form-control {
+        width: 100%;
+        margin-bottom: .25rem
+    }
+}
