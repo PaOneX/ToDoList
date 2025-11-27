@@ -17,14 +17,14 @@ function addTask() {
   taskList.push(task);
   console.log(taskList);
 
-    localStorage.setItem("task", JSON.stringify(taskList));
-    loadAssignTask();
+  localStorage.setItem("task", JSON.stringify(taskList));
+  loadAssignTask();
 }
 
-function loadAssignTask(){
-   let assignedList = document.getElementById("assignedList")
+function loadAssignTask() {
+  let assignedList = document.getElementById("assignedList");
 
-   let tblbody = `
+  let tblbody = `
         <tr>
             <th>Name</th>
             <th>Task</th>
@@ -34,20 +34,23 @@ function loadAssignTask(){
    `;
 
   let localStorageAssignedList = localStorage.getItem("task");
-    let localTasks = JSON.parse(localStorageAssignedList);
+  let localTasks = JSON.parse(localStorageAssignedList);
 
-    localTasks.forEach(task => {
-        tblbody += `
+  localTasks.forEach((task) => {
+    tblbody += `
         <tr>
             <td>${task.name}</td>
             <td>${task.task}</td>
             <td>${task.date}</td>
             <td>${task.description}</td>
+            <th><button class="btn btn-success" onclick="completeTask();">Completed</button></th>
+
         </tr>
-        `
-    })
-    assignedList.innerHTML = tblbody;
+        `;
+  });
+  assignedList.innerHTML = tblbody;
 }
 
-
-
+function completeTask() {
+    console.log("Task Completed");
+}
